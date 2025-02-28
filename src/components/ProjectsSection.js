@@ -5,7 +5,7 @@ import Card from "./Card";
 
 const projects = [
   {
-    title: "React Space",
+    title: "Currently building Saas Applications",
     description:
       "Handy tool belt to create amazing AR components in a React app, with redux integration via middleware️",
     getImageSrc: () => require("../images/photo1.jpg"),
@@ -33,7 +33,7 @@ const projects = [
 const ProjectsSection = () => {
   return (
     <FullScreenSection
-      backgroundColor="#14532d"
+      backgroundColor="#0f497d"
       isDarkBackground
       p={8}
       alignItems="flex-start"

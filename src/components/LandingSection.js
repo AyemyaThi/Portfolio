@@ -1,25 +1,27 @@
 import React from "react";
 import { Avatar, Heading, VStack } from "@chakra-ui/react";
 import FullScreenSection from "./FullScreenSection";
-
-const greeting = "Hello, I am Pete!";
-const bio1 = "A frontend developer";
-const bio2 = "specialised in React";
+import { usePortfolio } from "../hooks/usePortfolio"; // Import the hook and provider
 
 // Implement the UI for the LandingSection component according to the instructions.
 // Use a combination of Avatar, Heading and VStack components.
-const LandingSection = () => (
-  <FullScreenSection
-    justifyContent="center"
-    alignItems="center"
-    isDarkBackground
-    backgroundColor="#2A4365"
-  >
-    <Avatar name='Pete' src='https://i.pravatar.cc/150?img=7' />
-    <Heading as='h6' size='xs'>{greeting}</Heading>
-    <Heading as='h4'>{bio1}</Heading>
-    <Heading as='h4'>{bio2}</Heading>
-  </FullScreenSection>
-);
+const LandingSection = () => {
+  const { name, avatar_url, occupation, specialization } = usePortfolio();
+
+  //const greeting = `Hello, I am ${name}!`;
+  return (
+    <FullScreenSection
+      justifyContent="center"
+      alignItems="center"
+      isDarkBackground
+      backgroundColor="#2A4365"
+    >
+      <Avatar name='Aye Mya' src={avatar_url} />
+      <Heading as='h6' size='xs'>Hello, I am {name}</Heading>
+      <Heading as='h4'>{occupation}</Heading>
+      <Heading as='h4'>{specialization}</Heading>
+    </FullScreenSection>
+  )
+};
 
 export default LandingSection;

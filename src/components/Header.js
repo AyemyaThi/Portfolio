@@ -8,37 +8,37 @@ import {
   faStackOverflow,
 } from "@fortawesome/free-brands-svg-icons";
 import { Box, HStack } from "@chakra-ui/react";
-
-
-
-const socials = [
-  {
-    icon: faEnvelope,
-    url: "mailto: hello@example.com",
-  },
-  {
-    icon: faGithub,
-    url: "https://github.com",
-  },
-  {
-    icon: faLinkedin,
-    url: "https://www.linkedin.com",
-  },
-  {
-    icon: faMedium,
-    url: "https://medium.com",
-  },
-  {
-    icon: faStackOverflow,
-    url: "https://stackoverflow.com",
-  },
-];
-
+import { usePortfolio } from "../hooks/usePortfolio"; // Import the hook and provider
 
 const Header = () => {
 
   const ref = useRef(null);
   const prevScrollY = useRef(0);
+
+  const { github, linkedIn, email } = usePortfolio();
+
+  const socials = [
+    {
+      icon: faEnvelope,
+      url: `mailto: ${email}`,
+    },
+    {
+      icon: faGithub,
+      url: github,
+    },
+    {
+      icon: faLinkedin,
+      url: linkedIn,
+    },
+    // {
+    //   icon: faMedium,
+    //   url: "https://medium.com",
+    // },
+    // {
+    //   icon: faStackOverflow,
+    //   url: "https://stackoverflow.com",
+    // },
+  ];
 
   const handleClick = (anchor) => () => {
     const id = `${anchor}-section`;
@@ -50,17 +50,14 @@ const Header = () => {
       });
     }
   };
- 
+
   useEffect(() => {
-   
     prevScrollY.current = window.scrollY;
     //console.log('prevScrollY:: ', prevScrollY.current);
-   
-    
     const handleScroll = (e) => {
       const scrollY = window.scrollY;
       //console.log('scrollY:: ', scrollY);
-    
+
       if(scrollY > prevScrollY.current) {
         ref.current.style.transform = 'translateY(-200px)';
       } else {
@@ -70,12 +67,12 @@ const Header = () => {
       prevScrollY.current = scrollY;
 
     }
-  
+
     window.addEventListener("scroll", handleScroll);
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  
+
   }, []);
 
   return (
@@ -89,7 +86,7 @@ const Header = () => {
       transitionProperty="transform"
       transitionDuration=".3s"
       transitionTimingFunction="ease-in-out"
-      backgroundColor="#18181b"
+      backgroundColor="#092d4d"
     >
       <Box color="white" maxWidth="1280px" margin="0 auto">
         <HStack
@@ -100,8 +97,6 @@ const Header = () => {
         >
           <nav>
             {/* Add social media links based on the `socials` data */
-            
-             
               <HStack spacing={8}>
                 {socials.map((social, index) => (
                   <a href={social.url} key={index} target="_blank">
@@ -109,7 +104,6 @@ const Header = () => {
                   </a>
                 ))}
               </HStack>
-            
             }
           </nav>
           <nav>
